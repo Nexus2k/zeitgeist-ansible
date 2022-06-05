@@ -1,12 +1,12 @@
 ---
-- name: Setup polkadot
+- name: Setup node 1
   hosts: validator1
   become: yes
   roles:
-    - polkadot-claimer
+    - zeitgeist-node
 
-- name: Setup kusama
+- name: Setup node 2
   hosts: validator2
   become: yes
   roles:
-    - polkadot-claimer
+    - zeitgeist-node

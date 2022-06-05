@@ -1,26 +1,19 @@
-# This playbook deploys a full validator from scratch including downloading a db backup.
-# Update the DB download link and checksum in the host_vars first!
+# This playbook deploys a full node from scratch.
 ---
-- name: setup
-  hosts: polkadot
+- name: setup machine
+  hosts: validator1
   become: yes
   roles:
-  - polkadot-setup
+  - machine-setup
 
-- name: Setup polkadot
-  hosts: polkadot
+- name: Setup validator 1
+  hosts: validator1
   become: yes
   roles:
-    - polkadot-restore-db
-    - polkadot-validator
-    - polkadot-claimer
-    - polkadot-rotate-keys
+    - zeitgeist-node
 
 - name: Setup kusama
-  hosts: kusama
+  hosts: validator2
   become: yes
   roles:
-    - polkadot-restore-db
-    - polkadot-validator
-    - polkadot-claimer
-    - polkadot-rotate-keys
+    - zeitgeist-node

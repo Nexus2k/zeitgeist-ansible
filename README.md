@@ -12,7 +12,7 @@ Ansible scripts to deploy up to two Docker based zeitgeist nodes.
 
 Prerequisits:
 
-*  VPS or dedicated server meeting the Polkadot/Kusama requirements (you might want to have a beefier machine as we're going to run two validators on one machine)
+*  VPS or dedicated server meeting the Zeitgeist requirements (you might want to have a beefier machine as we're going to run two validators on one machine)
 *  ansible (2.11.6+)
 *  ansible-playbook (2.11.6+)
 
@@ -21,7 +21,7 @@ First copy the `hosts.ini-sample` to `hosts.ini` then:
 1.  Rename the two `my_node_*` entries to a name you like, also replace the `<IP of your server>` with the actual IP of your server
 1.  Copy/Rename `host_vars/my_node_*.yml` files to the same name you just called the host in the `hosts.ini` file.
 1.  Update the values in the `host_vars/my_node_*.yml` files, you always want to:
-  1.  Update the `node_name` this is the node name your validator will show up with in the Telemetry dashboards
+  1.  Update the `node_name` this is the node name your nodes will show up with in the Telemetry dashboards
 
 ## Deployment
 
@@ -33,30 +33,23 @@ $ ansible-playbook -i hosts.ini all.yml
 
 This will execute the following roles:
 
-* polkadot-setup
+* machine-setup
   *  Setup Docker
   *  Setup Journald
   *  Setup motd (message of the day)
-* polkadot-restore-db
-  *  Downloads the in the host_vars defined snapshot and unpacks it to the future `db_path`
-* polkadot-validator
-  *  Starts the polkadot/kusama validators as docker containers
-* polkadot-claimer
-  *  Copies the wallet.json & password files to the server
-  *  Setups a cronjob which executes a docker container that claims the staking rewards
-* polkadot-rotate-keys
-  *  Rotates the session keys so you can use for the `SetSessionKeys` extrinsic
+* zeitgeist-node
+  *  Starts the zeitgeist nodes as docker containers
 * watchtower (not run automatically, run using `ansible-playbook -i hosts.ini setup_watchtower.yml`)
   *  Sets up a watchtower container which monitors upstream container image repositories for new releases and upgrades automatically.
 
 You can also run the individual roles using the `setup_*.yml` playbooks instead of `all.yml`.
 
-### Polkadot upgrades
+### Zeitgeist upgrades
 
-To upgrade to the latest Polkadot version you can simply restart the containers using the `polkadot-validator` playbook.
+To upgrade to the latest Zeitgeist version you can simply restart the containers using the `setup_node.yml` playbook.
 
 ## Notes
 
-Monitoring is not yet covered in these ansible playbooks. Do NOT run a Polkadot/Kusama validator w/o proper monitoring or you will get slashed.
+Monitoring is not yet covered in these ansible playbooks. Do NOT run a Zeitgeist node w/o proper monitoring.
 
 You should not use `root` user on the server, instead replace the `ansible_user` field in `hosts.ini` with an unpriviledged user (which has docker rights).
