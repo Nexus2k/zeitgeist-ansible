@@ -1,0 +1,49 @@
+---
+- name: Clean running node
+  docker_container:
+    name: '{{ docker_name }}'
+    state: absent
+  ignore_errors: yes
+
+- name: Setup db path
+  file:
+    path: '{{ db_path }}'
+    state: directory
+    owner: 1000
+    group: 1000
+
+- name: Spin up docker
+  docker_compose:
+    project_name: '{{ docker_name }}'
+    pull: yes
+    definition:
+        version: '3'
+        services:
+            zeitgeist:
+                image: zeitgeistpm/zeitgeist-node-parachain:latest
+                container_name: '{{ docker_name }}'
+                command:
+                    [
+                        "--name={{ node_name }}",
+                        "--chain={{ chain }}",
+                        "--base-path=/zeitgeist/data",
+                        "--listen-addr=/ip4/0.0.0.0/tcp/30333",  # To be verified if working
+                        "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",  # To be verified if working
+                        "--pruning=archive"
+                    ]
+                volumes:
+                - "{{ db_path }}:/zeitgeist/data"
+                ports:
+                - "{{ rpc_listen }}:9933"
+                - "{{ ws_listen }}:9944"
+                - "{{ p2p_listen }}:30333"
+                hostname: '{{ docker_name }}'
+                restart: unless-stopped
+  register: output
+
+- ansible.builtin.debug:
+    var: output
+
+- ansible.builtin.assert:
+    that:
+        - "output.services.zeitgeist.{{ docker_name }}.state.running"

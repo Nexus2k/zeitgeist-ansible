@@ -1,0 +1,10 @@
+---
+node_name: 'MyNode-BS' # Change this!
+chain: battery_station
+docker_name: battery_station_mynode
+p2p_listen: 30333
+# Keep these bound to 127.0.0.1 you otherwise expose the ports to the public!
+rpc_listen: 127.0.0.1:9933
+ws_listen: 127.0.0.1:9944
+metrics_listen: 127.0.0.1:9615
+db_path: '~/{{chain}}'

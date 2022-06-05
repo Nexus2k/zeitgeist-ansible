@@ -1,0 +1,13 @@
+hosts.ini
+hosts*
+!hosts.ini-sample
+
+.vs/*
+
+host_vars/*
+!host_vars/my_*
+
+roles/polkadot-claimer/files/wallet.json-polkadot
+roles/polkadot-claimer/files/wallet.json-kusama
+roles/polkadot-claimer/files/password-polkadot
+roles/polkadot-claimer/files/password-kusama
