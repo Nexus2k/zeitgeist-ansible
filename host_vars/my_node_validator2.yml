@@ -1,6 +1,6 @@
 ---
 node_name: 'MyNode-ZTG' # Change this!
-chain: zeitgeist # ToDo: Update when mainnet name is known
+chain: zeitgeist
 docker_name: zeitgeist_mynode
 p2p_listen: 30334
 # Keep these bound to 127.0.0.1 you otherwise expose the ports to the public!
