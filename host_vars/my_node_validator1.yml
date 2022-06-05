@@ -1,5 +1,5 @@
 ---
-node_name: 'MyNode-BS' # Change this!
+node_name: 'MyNode-ZBS' # Change this!
 chain: battery_station
 docker_name: battery_station_mynode
 p2p_listen: 30333
