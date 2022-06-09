@@ -27,9 +27,13 @@
                         "--name={{ node_name }}",
                         "--chain={{ chain }}",
                         "--base-path=/zeitgeist/data",
+                        "--rpc-methods=Unsafe",
+                        "--rpc-external",
+                        "--rpc-cors=all",
                         "--listen-addr=/ip4/0.0.0.0/tcp/30333",  # To be verified if working
                         "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",  # To be verified if working
-                        "--pruning=archive"
+                        "--pruning=archive",
+                        "--collator"
                     ]
                 volumes:
                 - "{{ db_path }}:/zeitgeist/data"
