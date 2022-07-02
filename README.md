@@ -7,6 +7,7 @@ Ansible scripts to deploy up to two Docker based zeitgeist nodes.
 * Polkadot: [12bget8jJWnyjqYPiCwkXZjDh5tDBkta1WUcDYyndbXVDmQ1](https://polkadot.subscan.io/waiting/12bget8jJWnyjqYPiCwkXZjDh5tDBkta1WUcDYyndbXVDmQ1) (🍁 HIGH/STAKE 🥩/ZRH1 - 0.69% commission)
 * Kusama: [DbRgw96nMQcFEFZWTLd6LSPNdh8u3NBuUDfAhDmB6UU8cJC](https://thousand-validators.kusama.network/#/leaderboard/DbRgw96nMQcFEFZWTLd6LSPNdh8u3NBuUDfAhDmB6UU8cJC) (🍁 HIGH/STAKE 🥩/HEL1 - 4.20% commission)
 * Kusama: [HQuPha82sRy91zZn73XRGJVV3ernBh5HZKftUcoDT8CSUwK](https://thousand-validators.kusama.network/#/leaderboard/HQuPha82sRy91zZn73XRGJVV3ernBh5HZKftUcoDT8CSUwK) (🍁 HIGH/STAKE 🥩/ZRH1 - 10% commission)
+* Zeitgeist: [dE3cBpGqy7C5cMDsdPEpQstHAHXRKGPPqMCqjFHXJGRHeCPDj](https://zeitgeist.subscan.io/account/dE3cBpGqy7C5cMDsdPEpQstHAHXRKGPPqMCqjFHXJGRHeCPDj) (🍁 HIGH/STAKE 🥩/PRG1 - 20% network defined commission)
 
 ## Getting started
 
