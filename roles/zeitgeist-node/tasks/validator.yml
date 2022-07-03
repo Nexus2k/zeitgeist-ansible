@@ -27,13 +27,14 @@
                         "--name={{ node_name }}",
                         "--chain={{ chain }}",
                         "--base-path=/zeitgeist/data",
-                        "--rpc-methods=Unsafe",
-                        "--rpc-external",
                         "--rpc-cors=all",
-                        "--listen-addr=/ip4/0.0.0.0/tcp/30333",  # To be verified if working
-                        "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",  # To be verified if working
+                        "--listen-addr=/ip4/0.0.0.0/tcp/30333",
+                        "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",
                         "--pruning=archive",
-                        "--collator"
+                        "--collator",
+                        "--",
+                        "--listen-addr=/ip4/0.0.0.0/tcp/30334",
+                        "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_relay_listen }}",
                     ]
                 volumes:
                 - "{{ db_path }}:/zeitgeist/data"
@@ -41,6 +42,7 @@
                 - "{{ rpc_listen }}:9933"
                 - "{{ ws_listen }}:9944"
                 - "{{ p2p_listen }}:30333"
+                - "{{ p2p_relay_listen }}:30334"
                 hostname: '{{ docker_name }}'
                 restart: unless-stopped
   register: output
