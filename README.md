@@ -1,5 +1,5 @@
 ﻿# zeitgeist-ansible
-Ansible scripts to deploy up to two Docker based zeitgeist nodes.
+Ansible scripts to deploy up to two Docker or native zeitgeist nodes.
 
 ## Please Nominate or Tip Me!
 
@@ -40,6 +40,8 @@ This will execute the following roles:
   *  Setup motd (message of the day)
 * zeitgeist-node
   *  Starts the zeitgeist nodes as docker containers
+* zeitgeist-node-native (use setup_native_nodes.yml)
+  *  Starts the zeitgeist nodes as native services
 * watchtower (not run automatically, run using `ansible-playbook -i hosts.ini setup_watchtower.yml`)
   *  Sets up a watchtower container which monitors upstream container image repositories for new releases and upgrades automatically.
 

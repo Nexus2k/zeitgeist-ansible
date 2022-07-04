@@ -1,0 +1,52 @@
+---
+- name: Clean running docker node
+  docker_container:
+    name: '{{ docker_name }}'
+    state: absent
+  ignore_errors: yes
+
+- name: Create zeitgeist user
+  ansible.builtin.user:
+    name: zeitgeist
+    create_home: no
+    system: yes
+    shell: /sbin/nologin
+
+- name: Setup db path
+  file:
+    path: '{{ db_path }}'
+    state: directory
+    owner: zeitgeist
+    group: zeitgeist
+    recurse: yes
+
+- name: Setup binary path
+  file:
+    path: '/opt/{{ chain }}'
+    state: directory
+    owner: zeitgeist
+    group: zeitgeist
+    recurse: yes
+
+- name: Download zeitgeist binary
+  ansible.builtin.get_url:
+    url: 'https://github.com/zeitgeistpm/zeitgeist/releases/download/{{ version }}/zeitgeist_parachain'
+    dest: '/opt/{{ chain }}/zeitgeist_parachain'
+    mode: '0755'
+    owner: zeitgeist
+    group: zeitgeist
+
+- name: Create service
+  template:
+    src: zeitgeist-node.j2
+    dest: /etc/systemd/system/zeitgeist-node.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Start service
+  ansible.builtin.systemd:
+    name: zeitgeist-node.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

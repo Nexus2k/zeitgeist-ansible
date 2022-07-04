@@ -1,0 +1,12 @@
+---
+- name: Setup node 1
+  hosts: validator1
+  become: yes
+  roles:
+    - zeitgeist-node-native
+
+- name: Setup node 2
+  hosts: validator2
+  become: yes
+  roles:
+    - zeitgeist-node-native

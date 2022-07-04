@@ -2,8 +2,11 @@
 node_name: 'MyNode-ZTG' # Change this!
 chain: zeitgeist
 docker_name: zeitgeist_mynode
-p2p_listen: 30334
+p2p_listen: 30335
+p2p_relay_listen: 30336
 # Keep these bound to 127.0.0.1 you otherwise expose the ports to the public!
-rpc_listen: 127.0.0.1:9934
-ws_listen: 127.0.0.1:9945
+rpc_listen: 9935
+rpc_relay_listen: 9936
+ws_listen: 9946
+ws_relay_listen: 9947
 db_path: '~/{{chain}}'
