@@ -47,6 +47,6 @@
 - name: Start service
   ansible.builtin.systemd:
     name: zeitgeist-node.service
-    state: started
+    state: restarted
     enabled: yes
     daemon_reload: yes
