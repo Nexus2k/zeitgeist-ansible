@@ -1,0 +1,12 @@
+---
+- name: Backup validator1 keys
+  hosts: validator1
+  become: yes
+  roles:
+    - zeitgeist-backup-keys
+
+- name: Backup validator2 keys
+  hosts: validator2
+  become: yes
+  roles:
+    - zeitgeist-backup-keys
