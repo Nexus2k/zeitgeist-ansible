@@ -23,12 +23,14 @@ ExecStart=/opt/{{ chain }}/zeitgeist_parachain \
     --rpc-cors=all \
     --pruning=archive \
     --execution=wasm \
+    --wasm-execution=compiled \
     --\
     --port={{ p2p_relay_listen }} \
     --rpc-port={{ rpc_relay_listen }} \
     --ws-port={{ ws_relay_listen }} \
     --state-cache-size=0 \
     --pruning=1000 \
+    --execution=wasm \
     --no-mdns
 
 [Install]
