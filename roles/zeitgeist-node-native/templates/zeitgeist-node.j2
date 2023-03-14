@@ -23,13 +23,18 @@ ExecStart=/opt/{{ chain }}/zeitgeist_parachain \
     --rpc-cors=all \
     --pruning=archive \
     --execution=wasm \
+    --bootnodes=/ip4/172.104.229.106/tcp/30333/p2p/12D3KooWJ5e5EYXX6YNjGfV3fwr56o9Xk9NXt1uTU2CysEieoX9R \
+    --bootnodes=/ip4/172.104.229.106/tcp/30333/ws/p2p/12D3KooWJ5e5EYXX6YNjGfV3fwr56o9Xk9NXt1uTU2CysEieoX9R \
     --wasm-execution=compiled \
     --\
     --port={{ p2p_relay_listen }} \
     --rpc-port={{ rpc_relay_listen }} \
     --ws-port={{ ws_relay_listen }} \
     --state-cache-size=0 \
-    --pruning=1000 \
+    --database=paritydb \
+    --unsafe-pruning \
+    --pruning=100 \
+    --keep-blocks=100 \
     --execution=wasm \
     --no-mdns
 

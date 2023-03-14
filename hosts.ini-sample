@@ -10,4 +10,4 @@ my_node_kusama ansible_host=<IP of your server>
 [all:vars]
 ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ConnectTimeout=15'
 ansible_user=root
-version=v0.3.6
+version=v0.3.8-polkadot
